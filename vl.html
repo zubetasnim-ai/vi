@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Valentine's Day</title>
+    <style>
+        body {
+          font-family: 'Harlow Solid Italic', cursive;
+            background: linear-gradient(to bottom, #b50909, #e7e6e6);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            color: #670607;
+            animation: float 6s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        form {
+            background: rgba(255,255,255,0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background: #7a0a0a;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #6a0404;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day! 💖</h1>
+    <p>Hope you like this little Cutu</p>
+    
+    <form id="loveForm">
+        <input type="text" id="name" placeholder="Your name" required>
+        <input type="text" id="note" placeholder= "Your note"required>
+        <button type="submit">Send Love!</button>
+    </form>
+    
+    <div id="message"></div>
+    
+    <script>
+        // Generate floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 6 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+        
+        setInterval(createHeart, 500);
+        
+        // Handle form submission
+        document.getElementById('loveForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const note = document.getElementById('note').value;
+            document.getElementById('message').innerHTML = `💌 ${name} says: "${note}" 💌`;
+            this.reset();
+        });
+    </script>
+</body>
+</html>
